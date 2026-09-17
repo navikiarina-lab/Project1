@@ -1,10 +1,6 @@
 import db from "../config/db.mjs";
 
 
-// =========================
-// GET SHIPMENTS
-// =========================
-
 export const getAll = async (req, res) => {
     try {
         let query;
@@ -26,7 +22,7 @@ export const getAll = async (req, res) => {
 
         } else {
 
-            // USER → hanya shipment miliknya
+           
             query = `
                 SELECT *
                 FROM shipments
@@ -54,10 +50,6 @@ export const getAll = async (req, res) => {
     }
 };
 
-
-// =========================
-// CREATE SHIPMENT
-// =========================
 
 export const create = async (req, res) => {
     try {
@@ -137,10 +129,6 @@ export const create = async (req, res) => {
 };
 
 
-// =========================
-// UPDATE SHIPMENT
-// =========================
-
 export const update = async (req, res) => {
     try {
 
@@ -156,9 +144,6 @@ export const update = async (req, res) => {
             status
         } = req.body;
 
-
-        // USER hanya boleh update
-        // shipment miliknya sendiri
         let query;
         let params;
 
@@ -251,10 +236,6 @@ export const update = async (req, res) => {
 };
 
 
-// =========================
-// DELETE SHIPMENT
-// =========================
-
 export const remove = async (req, res) => {
     try {
 
@@ -317,10 +298,6 @@ export const remove = async (req, res) => {
     }
 };
 
-
-// =========================
-// TRACKING
-// =========================
 
 export const trackShipment = async (req, res) => {
     try {

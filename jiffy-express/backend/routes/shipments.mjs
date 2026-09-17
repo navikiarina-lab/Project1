@@ -17,30 +17,16 @@ import {
 const router = express.Router();
 
 
-// =========================
-// TRACKING
-// =========================
-
 router.get(
     "/tracking/:tracking_number",
     trackShipment
 );
-
-
-// =========================
-// USER + ADMIN
-// =========================
 
 router.get(
     "/",
     authMiddleware,
     getAll
 );
-
-
-// =========================
-// ADMIN CREATE
-// =========================
 
 router.post(
     "/",
@@ -50,10 +36,6 @@ router.post(
 );
 
 
-// =========================
-// ADMIN UPDATE
-// =========================
-
 router.put(
     "/:id",
     authMiddleware,
@@ -61,10 +43,6 @@ router.put(
     update
 );
 
-
-// =========================
-// ADMIN DELETE
-// =========================
 
 router.delete(
     "/:id",

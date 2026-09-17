@@ -9,9 +9,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 
-// =========================
-// REGISTER
-// =========================
 
 export const register = async (req, res) => {
 
@@ -100,12 +97,6 @@ export const register = async (req, res) => {
     }
 
 };
-
-
-
-// =========================
-// LOGIN
-// =========================
 
 export const login = async (req, res) => {
 

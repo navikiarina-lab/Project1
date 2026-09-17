@@ -137,7 +137,6 @@ function AdminDashboard() {
 
             <main className="dashboard">
 
-                {/* HEADER */}
 
                 <div className="dashboard-header">
                     <div>
@@ -150,7 +149,6 @@ function AdminDashboard() {
                     </div>
                 </div>
 
-                {/* MESSAGE */}
 
                 {message && (
                     <div className="dashboard-message">
@@ -158,7 +156,6 @@ function AdminDashboard() {
                     </div>
                 )}
 
-                {/* STATISTICS */}
 
                 <div className="stats-grid">
 
@@ -199,15 +196,12 @@ function AdminDashboard() {
 
                 </div>
 
-                {/* FORM */}
 
                 <ShipmentForm
                     onShipmentCreated={
                         handleCreateShipment
                     }
                 />
-
-                {/* TABLE */}
 
                 {loading ? (
                     <div className="loading">

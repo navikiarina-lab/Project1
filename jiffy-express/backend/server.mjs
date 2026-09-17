@@ -20,20 +20,10 @@ console.log("DATABASE:", process.env.DB_NAME);
 const app = express();
 
 
-// =========================
-// MIDDLEWARE
-// =========================
-
-
-
 app.use(cors());
 
 app.use(express.json());
 
-
-// =========================
-// HOME
-// =========================
 
 app.get("/", (req, res) => {
 
@@ -60,10 +50,6 @@ app.use(
     shipmentRoutes
 );
 
-
-// =========================
-// SERVER
-// =========================
 
 const PORT =
     process.env.PORT || 5000;

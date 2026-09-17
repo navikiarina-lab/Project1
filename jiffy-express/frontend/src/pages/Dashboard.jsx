@@ -131,9 +131,6 @@ function Dashboard() {
                     </div>
                 </section>
 
-
-                {/* TRACKING */}
-
                 <section className="tracking-section">
 
                     <div className="tracking-title">
@@ -185,8 +182,6 @@ function Dashboard() {
 
                 </section>
 
-
-                {/* TRACKING RESULT */}
 
                 {trackingResult && (
                     <section className="tracking-result">
@@ -278,9 +273,6 @@ function Dashboard() {
 
                         </div>
 
-
-                        {/* TIMELINE */}
-
                         <div className="tracking-timeline">
 
                             <h3>
@@ -358,9 +350,6 @@ function Dashboard() {
                     </section>
                 )}
 
-
-                {/* STATISTICS */}
-
                 <section className="user-stats">
 
                     <div className="user-stat-card">
@@ -403,9 +392,6 @@ function Dashboard() {
                     </div>
 
                 </section>
-
-
-                {/* SHIPMENT LIST */}
 
                 <section className="shipment-list-section">
 

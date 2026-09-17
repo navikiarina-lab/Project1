@@ -10,8 +10,6 @@ body {
     color: #1f2937;
 }
 
-/* AUTH */
-
 .auth-container {
     min-height: 100vh;
     display: flex;
@@ -43,7 +41,7 @@ body {
     color: #6b7280;
 }
 
-/* FORM */
+
 
 .form-group {
     margin-bottom: 18px;
@@ -108,7 +106,7 @@ body {
     text-align: center;
 }
 
-/* NAVBAR */
+
 
 .navbar {
     min-height: 70px;
@@ -139,7 +137,7 @@ body {
     cursor: pointer;
 }
 
-/* DASHBOARD */
+
 
 .dashboard {
     max-width: 1200px;
@@ -159,7 +157,7 @@ body {
     color: #6b7280;
 }
 
-/* STATISTICS */
+
 
 .stats-grid {
     display: grid;
@@ -186,7 +184,6 @@ body {
     font-weight: bold;
 }
 
-/* SHIPMENT FORM */
 
 .shipment-form {
     background: white;
@@ -206,7 +203,6 @@ body {
     gap: 15px;
 }
 
-/* TABLE */
 
 .table-container {
     background: white;
@@ -252,8 +248,6 @@ th {
     cursor: pointer;
 }
 
-/* STATUS */
-
 .status {
     padding: 5px 9px;
     border-radius: 20px;
@@ -261,7 +255,6 @@ th {
     font-weight: bold;
 }
 
-/* RESPONSIVE */
 
 @media (max-width: 900px) {
     .stats-grid {
@@ -290,9 +283,7 @@ th {
         padding: 25px;
     }
 }
-/* =========================
-   ADMIN DASHBOARD
-========================= */
+
 
 .admin-page {
     min-height: 100vh;
@@ -323,9 +314,6 @@ th {
     color: #6b7280;
 }
 
-/* =========================
-   MESSAGE
-========================= */
 
 .dashboard-message {
     padding: 12px 16px;
@@ -334,10 +322,6 @@ th {
     color: #0369a1;
     border-radius: 8px;
 }
-
-/* =========================
-   STATISTICS
-========================= */
 
 .stats-grid {
     display: grid;
@@ -371,9 +355,6 @@ th {
     color: #111827;
 }
 
-/* =========================
-   SHIPMENT FORM
-========================= */
 
 .shipment-form {
     background: white;
@@ -435,9 +416,6 @@ th {
     border-color: #06b6d4;
 }
 
-/* =========================
-   BUTTON
-========================= */
 
 .btn-primary {
     border: none;
@@ -459,9 +437,6 @@ th {
     background: #0891b2;
 }
 
-/* =========================
-   TABLE
-========================= */
 
 .table-container {
     background: white;
@@ -512,10 +487,6 @@ td {
     color: #4b5563;
 }
 
-/* =========================
-   STATUS
-========================= */
-
 .status {
     display: inline-block;
 
@@ -532,9 +503,6 @@ td {
     font-weight: 600;
 }
 
-/* =========================
-   DELETE
-========================= */
 
 .btn-delete {
     border: none;
@@ -554,9 +522,6 @@ td {
     background: #dc2626;
 }
 
-/* =========================
-   LOADING
-========================= */
 
 .loading {
     padding: 40px;
@@ -566,9 +531,6 @@ td {
     color: #6b7280;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 1000px) {
 
@@ -607,9 +569,6 @@ td {
     }
 
 }
-/* =========================
-   USER DASHBOARD
-========================= */
 
 .user-page {
     min-height: 100vh;
@@ -640,10 +599,6 @@ td {
     color: #6b7280;
 }
 
-
-/* =========================
-   TRACKING
-========================= */
 
 .tracking-section {
     background: white;
@@ -693,11 +648,6 @@ td {
     color: #b91c1c;
     border-radius: 8px;
 }
-
-
-/* =========================
-   TRACKING RESULT
-========================= */
 
 .tracking-result {
     background: white;
@@ -753,11 +703,6 @@ td {
     font-size: 15px;
 }
 
-
-/* =========================
-   STATUS
-========================= */
-
 .status {
     display: inline-block;
     padding: 7px 12px;
@@ -789,11 +734,6 @@ td {
     background: #dcfce7;
     color: #15803d;
 }
-
-
-/* =========================
-   TIMELINE
-========================= */
 
 .tracking-timeline {
     border-top: 1px solid #e5e7eb;
@@ -877,11 +817,6 @@ td {
     border-radius: 10px;
 }
 
-
-/* =========================
-   USER STATS
-========================= */
-
 .user-stats {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -910,10 +845,6 @@ td {
     font-size: 28px;
 }
 
-
-/* =========================
-   SHIPMENT LIST
-========================= */
 
 .shipment-list-section {
     margin-top: 30px;
