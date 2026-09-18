@@ -84,17 +84,15 @@ UPDATE users
 SET role = 'admin'
 WHERE email = 'admin.navi@gmail.com';
 
--- 1. Pastikan user sudah ada
+
 SELECT id, name, email, role
 FROM users
 WHERE email = 'navi.kiarina@gmail.com';
 
--- 2. Jadikan admin
 UPDATE users
 SET role = 'admin'
 WHERE email = 'navi.kiarina@gmail.com';
 
--- 3. Masukkan ke tabel admins
 INSERT INTO admins (user_id)
 SELECT id
 FROM users
@@ -103,7 +101,6 @@ AND NOT EXISTS (
     SELECT 1 FROM admins WHERE admins.user_id = users.id
 );
 
--- 4. Cek
 SELECT 
     u.id,
     u.name,
@@ -116,6 +113,7 @@ WHERE u.email = 'navi.kiarina@gmail.com';
 
 SELECT id, name, email, role
 FROM users
+WHERE email = 'navi.kiarina@gmail.com';
 
 USE jiffy_express_db;
 
@@ -184,3 +182,66 @@ VALUES
 );
 
 DESCRIBE shipments;
+
+UPDATE users
+SET password = '$2b$10$F2Tet6sH.pVkbuq8PdQUl.V14bz0Tvr5pzVxrZJ6MtAVh/Hjz9geW'
+WHERE email = 'navi.kiarina@gmail.com';
+
+SELECT email, password
+FROM users
+WHERE email = 'navi.kiarina@gmail.com';
+
+UPDATE users
+SET email = 'admin_jiffy@express.com'
+WHERE email = 'navi.kiarina@gmail.com';
+
+SELECT id, name, email, role, password
+FROM users
+WHERE email = 'admin_jiffy@express.com';
+
+DESCRIBE users;
+
+DESCRIBE shipments;
+
+DESCRIBE tracking_history;
+
+SELECT
+    id,
+    user_id,
+    tracking_number,
+    sender,
+    receiver,
+    status
+FROM shipments
+ORDER BY id DESC;
+
+SELECT id, name, email, role
+FROM users;
+
+SELECT
+    id,
+    user_id,
+    tracking_number,
+    sender,
+    receiver,
+    destination,
+    status
+FROM shipments;
+
+UPDATE shipments
+SET user_id = 2
+WHERE id = 2;
+
+SELECT
+    id,
+    user_id,
+    tracking_number,
+    sender,
+    receiver,
+    status
+FROM shipments
+ORDER BY id DESC;
+
+SELECT id, name, email, role
+FROM users
+WHERE email = 'ananda.reza1@gmail.com';

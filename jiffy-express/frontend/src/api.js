@@ -33,7 +33,9 @@ export const registerUser = async (name, email, password) => {
 
 export const getShipments = async () => {
     const token = localStorage.getItem("token");
-
+    
+    console.log("TOKEN:", token);
+    
     const response = await fetch(
         `${API_URL}/shipments`,
         {

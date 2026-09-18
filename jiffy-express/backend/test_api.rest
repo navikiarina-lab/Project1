@@ -1,0 +1,17 @@
+### Login
+# @name login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ananda.reza1@gmail.com",
+  "password": "spaxspix123"
+}
+
+### Pesanan User
+GET http://localhost:5000/api/shipments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhbmFuZGEucmV6YTFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODk3MDAyOTYsImV4cCI6MTc4OTc4NjY5Nn0.TjLhR_WjWeVYO1z62CXewrHHd6gmJxThxHK7WSapCUc
+
+###
+GET http://localhost:5000/api/shipments/2/tracking
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhbmFuZGEucmV6YTFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODk3MDAyOTYsImV4cCI6MTc4OTc4NjY5Nn0.TjLhR_WjWeVYO1z62CXewrHHd6gmJxThxHK7WSapCUc

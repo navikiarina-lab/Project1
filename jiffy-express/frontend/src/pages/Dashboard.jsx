@@ -28,8 +28,14 @@ function Dashboard() {
 
     const loadShipments = async () => {
         try {
-            const data = await getShipments();
+            const token = localStorage.getItem("token");
 
+            console.log("TOKEN DASHBOARD:", token);
+
+            const data = await getShipments();
+            
+            console.log("SHIPMENTS DATA:", data);
+            
             if (Array.isArray(data)) {
                 setShipments(data);
             }

@@ -364,7 +364,7 @@ export const trackShipment = async (req, res) => {
         res.json({
             shipment,
             tracking_history: history
-        });
+        }); 
 
     } catch (error) {
 
@@ -373,6 +373,70 @@ export const trackShipment = async (req, res) => {
         res.status(500).json({
             message:
                 "Gagal melakukan tracking"
+        });
+    }
+};
+
+export const getTrackingById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Cari shipment sesuai user yang sedang login
+        const [shipments] = await db.promise().query(
+            `
+            SELECT
+                id,
+                tracking_number,
+                sender,
+                receiver,
+                origin,
+                destination,
+                scenario,
+                condition_level,
+                status,
+                created_at,
+                updated_at
+            FROM shipments
+            WHERE id = ?
+            AND user_id = ?
+            `,
+            [id, req.user.id]
+        );
+
+        if (shipments.length === 0) {
+            return res.status(404).json({
+                message: "Shipment tidak ditemukan"
+            });
+        }
+
+        const shipment = shipments[0];
+
+        // Ambil riwayat tracking
+        const [history] = await db.promise().query(
+            `
+            SELECT
+                id,
+                status,
+                location,
+                description,
+                created_at
+            FROM tracking_history
+            WHERE shipment_id = ?
+            ORDER BY created_at ASC
+            `,
+            [id]
+        );
+
+        res.json({
+            shipment,
+            tracking_history: history
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Gagal mengambil tracking"
         });
     }
 };
