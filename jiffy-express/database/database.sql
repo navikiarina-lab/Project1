@@ -245,3 +245,7 @@ ORDER BY id DESC;
 SELECT id, name, email, role
 FROM users
 WHERE email = 'ananda.reza1@gmail.com';
+
+SELECT id, name, email, role 
+FROM users 
+USE jiffy_express_db;
