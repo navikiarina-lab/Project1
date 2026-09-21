@@ -43,7 +43,17 @@ function ShipmentTable({ shipments, onDelete }) {
                                 <td>{shipment.condition_level}</td>
 
                                 <td>
-                                    <span className="status">
+                                    <span
+                                        className={`status ${
+                                            shipment.status === "Delivered"
+                                                ? "delivered"
+                                                : shipment.status === "In Transit"
+                                                    ? "transit"
+                                                    : shipment.status === "Delayed"
+                                                        ? "delayed"
+                                                        : "pending"
+                                        }`}
+                                    >
                                         {shipment.status}
                                     </span>
                                 </td>

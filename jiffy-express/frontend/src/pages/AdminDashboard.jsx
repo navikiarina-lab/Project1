@@ -22,22 +22,6 @@ function AdminDashboard() {
         localStorage.getItem("user")
     );
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-
-        if (!token) {
-            navigate("/");
-            return;
-        }
-
-        if (user?.role !== "admin") {
-            navigate("/dashboard");
-            return;
-        }
-
-        loadShipments();
-    }, [navigate]);
-
     const loadShipments = async () => {
         try {
             setLoading(true);
@@ -61,6 +45,23 @@ function AdminDashboard() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            navigate("/");
+            return;
+        }
+
+        if (user?.role !== "admin") {
+            navigate("/dashboard");
+            return;
+        }
+
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        loadShipments();
+    }, [navigate, user?.role]);
 
     const handleCreateShipment = async (shipment) => {
         try {
@@ -140,12 +141,21 @@ function AdminDashboard() {
 
                 <div className="dashboard-header">
                     <div>
+                        <span className="eyebrow">
+                            Operational overview
+                        </span>
                         <h1>Dashboard Admin</h1>
 
                         <p>
                             Kelola dan pantau seluruh shipment
                             Jiffy Express.
                         </p>
+                    </div>
+
+                    <div className="dashboard-actions">
+                        <span className="status-pill">
+                            Live monitoring
+                        </span>
                     </div>
                 </div>
 

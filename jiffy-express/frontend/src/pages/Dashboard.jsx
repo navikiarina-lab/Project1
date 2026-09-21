@@ -14,18 +14,6 @@ function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [trackingLoading, setTrackingLoading] = useState(false);
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-
-        if (!token) {
-            navigate("/");
-            return;
-        }
-
-        loadShipments();
-    }, [navigate]);
-
-
     const loadShipments = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -33,9 +21,9 @@ function Dashboard() {
             console.log("TOKEN DASHBOARD:", token);
 
             const data = await getShipments();
-            
+
             console.log("SHIPMENTS DATA:", data);
-            
+
             if (Array.isArray(data)) {
                 setShipments(data);
             }
@@ -45,6 +33,18 @@ function Dashboard() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            navigate("/");
+            return;
+        }
+
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        loadShipments();
+    }, [navigate]);
 
 
     const handleTracking = async (e) => {
