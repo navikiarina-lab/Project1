@@ -440,3 +440,50 @@ export const getTrackingById = async (req, res) => {
         });
     }
 };
+
+export const claimShipment = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const [result] = await db.promise().query(
+            `UPDATE shipments
+             SET user_id = ?
+             WHERE id = ?
+             AND user_id IS NULL`,
+            [req.user.id, id]
+        );
+
+        if (result.affectedRows === 0) {
+            const [shipments] = await db.promise().query(
+                "SELECT user_id FROM shipments WHERE id = ?",
+                [id]
+            );
+
+            if (shipments.length === 0) {
+                return res.status(404).json({
+                    message: "Shipment tidak ditemukan"
+                });
+            }
+
+            if (shipments[0].user_id === req.user.id) {
+                return res.json({
+                    message: "Shipment sudah menjadi milik Anda"
+                });
+            }
+
+            return res.status(409).json({
+                message: "Shipment sudah diklaim oleh user lain"
+            });
+        }
+
+        res.json({
+            message: "Shipment berhasil diklaim"
+        });
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Gagal mengklaim shipment"
+        });
+    }
+};

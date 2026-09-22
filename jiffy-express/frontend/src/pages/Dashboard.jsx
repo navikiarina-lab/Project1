@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
-import { getShipments, trackShipment } from "../api";
+import { getShipments, trackShipment, claimShipment } from "../api";
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -13,6 +13,7 @@ function Dashboard() {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(true);
     const [trackingLoading, setTrackingLoading] = useState(false);
+    const [claimLoading, setClaimLoading] = useState(false);
 
     const loadShipments = async () => {
         try {
@@ -83,6 +84,32 @@ function Dashboard() {
         }
     };
 
+    const handleClaim = async () => {
+        if (!trackingResult?.shipment?.id) {
+            return;
+        }
+
+        try {
+            setClaimLoading(true);
+            setMessage("");
+
+            const data = await claimShipment(
+                trackingResult.shipment.id
+            );
+
+            setMessage(data.message || "Klaim shipment selesai");
+
+            if (data.message?.includes("berhasil") || data.message?.includes("milik Anda")) {
+                await loadShipments();
+            }
+        } catch (error) {
+            console.error(error);
+            setMessage("Gagal mengklaim shipment");
+        } finally {
+            setClaimLoading(false);
+        }
+    };
+
 
     const getStatusClass = (status) => {
         switch (status) {
@@ -98,6 +125,14 @@ function Dashboard() {
             default:
                 return "status pending";
         }
+    };
+
+    const maskTrackingNumber = (trackingNumber) => {
+        if (!trackingNumber || trackingNumber.length <= 5) {
+            return trackingNumber;
+        }
+
+        return `${trackingNumber.slice(0, 3)}****${trackingNumber.slice(-2)}`;
     };
 
 
@@ -279,6 +314,23 @@ function Dashboard() {
 
                         </div>
 
+                        <div className="claim-box">
+                            <div>
+                                <strong>Apakah ini barang Anda?</strong>
+                                <p>
+                                    Klaim shipment ini agar tersimpan di daftar Anda.
+                                </p>
+                            </div>
+                            <button
+                                type="button"
+                                className="btn-primary"
+                                onClick={handleClaim}
+                                disabled={claimLoading}
+                            >
+                                {claimLoading ? "Memproses..." : "Klaim Barang Ini"}
+                            </button>
+                        </div>
+
                         <div className="tracking-timeline">
 
                             <h3>
@@ -448,7 +500,9 @@ function Dashboard() {
 
                                             <strong>
                                                 {
-                                                    shipment.tracking_number
+                                                    maskTrackingNumber(
+                                                        shipment.tracking_number
+                                                    )
                                                 }
                                             </strong>
                                         </div>

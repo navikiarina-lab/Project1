@@ -9,7 +9,8 @@ import {
     update,
     remove,
     trackShipment,
-    getTrackingById
+    getTrackingById,
+    claimShipment
 } from "../controllers/shipments.mjs";
 
 const router = express.Router();
@@ -23,6 +24,11 @@ router.get(
     "/:id/tracking",
     authMiddleware,
     getTrackingById
+);
+router.post(
+    "/:id/claim",
+    authMiddleware,
+    claimShipment
 );
 router.get(
     "/",

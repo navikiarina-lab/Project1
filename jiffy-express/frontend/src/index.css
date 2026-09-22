@@ -153,6 +153,9 @@ a { color: var(--brand); text-decoration: none; }
 .shipment-info, .shipment-cards { display: grid; gap: 14px; grid-template-columns: repeat(4, 1fr); margin-top: 26px; }
 .shipment-info > div { background: #f7fafb; border-radius: 9px; padding: 14px; }
 .shipment-info strong, .route strong { font-size: 14px; }
+.claim-box { align-items: center; background: #f0fdfa; border: 1px solid #b6f1e7; border-radius: 10px; display: flex; justify-content: space-between; gap: 18px; margin-top: 18px; padding: 16px; }
+.claim-box strong { color: var(--ink); display: block; font-size: 14px; margin-bottom: 4px; }
+.claim-box p { color: var(--muted); font-size: 13px; }
 
 .status { background: #eef2f6; border-radius: 999px; color: #56657a; display: inline-block; font-size: 11px; font-weight: 700; padding: 5px 10px; white-space: nowrap; }
 .status.delivered { background: #dcfce7; color: #15803d; }
@@ -198,5 +201,7 @@ tbody tr:last-child td { border-bottom: 0; }
     .shipment-form, .table-container, .tracking-section, .tracking-result, .shipment-list-section { padding: 20px; }
     .tracking-form { align-items: stretch; flex-direction: column; }
     .tracking-form .btn-primary { width: 100%; }
+    .claim-box { align-items: stretch; flex-direction: column; }
+    .claim-box .btn-primary { width: 100%; }
     .timeline-top { align-items: flex-start; flex-direction: column; gap: 2px; }
 }
