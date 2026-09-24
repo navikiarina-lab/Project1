@@ -1,4 +1,4 @@
-function ShipmentTable({ shipments, onDelete }) {
+function ShipmentTable({ shipments, onDelete, onEdit }) {
     return (
         <div className="table-container">
             <h2>Data Shipment</h2>
@@ -59,6 +59,12 @@ function ShipmentTable({ shipments, onDelete }) {
                                 </td>
 
                                 <td>
+                                    <button
+                                        className="btn-edit"
+                                        onClick={() => onEdit(shipment)}
+                                    >
+                                        Edit
+                                    </button>
                                     <button
                                         className="btn-delete"
                                         onClick={() =>

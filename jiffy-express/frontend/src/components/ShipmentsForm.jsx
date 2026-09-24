@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function ShipmentForm({ onShipmentCreated }) {
-    const [form, setForm] = useState({
+function ShipmentForm({ onShipmentCreated, editingShipment, onCancelEdit }) {
+    const [form, setForm] = useState(editingShipment || {
         tracking_number: "",
         sender: "",
         receiver: "",
@@ -19,26 +19,30 @@ function ShipmentForm({ onShipmentCreated }) {
         });
     };
 
+    const activeForm = form;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await onShipmentCreated(form);
+        await onShipmentCreated(activeForm, Boolean(editingShipment));
 
-        setForm({
-            tracking_number: "",
-            sender: "",
-            receiver: "",
-            origin: "",
-            destination: "",
-            scenario: "Operasional",
-            condition_level: "Normal",
-            status: "Pending"
-        });
+        if (!editingShipment) {
+            setForm({
+                tracking_number: "",
+                sender: "",
+                receiver: "",
+                origin: "",
+                destination: "",
+                scenario: "Operasional",
+                condition_level: "Normal",
+                status: "Pending"
+            });
+        }
     };
 
     return (
         <div className="shipment-form">
-            <h2>Tambah Shipment</h2>
+            <h2>{editingShipment ? "Edit Shipment" : "Tambah Shipment"}</h2>
 
             <form onSubmit={handleSubmit}>
                 <div className="form-grid">
@@ -48,7 +52,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <input
                             type="text"
                             name="tracking_number"
-                            value={form.tracking_number}
+                            value={activeForm.tracking_number}
                             onChange={handleChange}
                             placeholder="JFX-001"
                             required
@@ -60,7 +64,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <input
                             type="text"
                             name="sender"
-                            value={form.sender}
+                            value={activeForm.sender}
                             onChange={handleChange}
                             placeholder="Nama pengirim"
                             required
@@ -72,7 +76,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <input
                             type="text"
                             name="receiver"
-                            value={form.receiver}
+                            value={activeForm.receiver}
                             onChange={handleChange}
                             placeholder="Nama penerima"
                             required
@@ -84,7 +88,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <input
                             type="text"
                             name="origin"
-                            value={form.origin}
+                            value={activeForm.origin}
                             onChange={handleChange}
                             placeholder="Bandung"
                             required
@@ -96,7 +100,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <input
                             type="text"
                             name="destination"
-                            value={form.destination}
+                            value={activeForm.destination}
                             onChange={handleChange}
                             placeholder="Jakarta"
                             required
@@ -107,7 +111,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <label>Skenario</label>
                         <select
                             name="scenario"
-                            value={form.scenario}
+                            value={activeForm.scenario}
                             onChange={handleChange}
                         >
                             <option value="Operasional">
@@ -128,7 +132,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <label>Kondisi Paket</label>
                         <select
                             name="condition_level"
-                            value={form.condition_level}
+                            value={activeForm.condition_level}
                             onChange={handleChange}
                         >
                             <option value="Normal">
@@ -149,7 +153,7 @@ function ShipmentForm({ onShipmentCreated }) {
                         <label>Status</label>
                         <select
                             name="status"
-                            value={form.status}
+                            value={activeForm.status}
                             onChange={handleChange}
                         >
                             <option value="Pending">
@@ -172,12 +176,20 @@ function ShipmentForm({ onShipmentCreated }) {
 
                 </div>
 
-                <button
-                    type="submit"
-                    className="btn-primary"
-                >
-                    Tambah Shipment
-                </button>
+                <div className="form-actions">
+                    <button type="submit" className="btn-primary">
+                        {editingShipment ? "Simpan Perubahan" : "Tambah Shipment"}
+                    </button>
+                    {editingShipment && (
+                        <button
+                            type="button"
+                            className="btn-secondary"
+                            onClick={onCancelEdit}
+                        >
+                            Batal
+                        </button>
+                    )}
+                </div>
             </form>
         </div>
     );

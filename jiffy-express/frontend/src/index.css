@@ -142,6 +142,9 @@ a { color: var(--brand); text-decoration: none; }
 .stat-card strong, .user-stat-card strong { color: var(--ink); font-family: "Space Grotesk", sans-serif; font-size: 30px; }
 
 .shipment-form, .table-container, .tracking-section, .tracking-result, .shipment-list-section { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 8px 22px rgba(20, 33, 61, 0.04); margin-bottom: 28px; padding: 26px; }
+.form-actions { align-items: center; display: flex; gap: 10px; }
+.btn-secondary, .btn-edit { background: #eef2f6; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); cursor: pointer; padding: 10px 14px; }
+.btn-edit { background: #e6fffb; border-color: #b6f1e7; color: var(--brand-dark); margin-right: 8px; }
 .shipment-form h2, .table-container h2, .tracking-title h2, .section-header h2 { font-size: 19px; margin-bottom: 6px; }
 .form-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); margin-bottom: 18px; margin-top: 22px; }
 .tracking-form { display: flex; gap: 10px; margin-top: 22px; }

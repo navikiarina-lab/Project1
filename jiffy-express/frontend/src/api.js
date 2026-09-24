@@ -67,6 +67,24 @@ export const createShipment = async (shipment) => {
     return response.json();
 };
 
+export const updateShipment = async (id, shipment) => {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(
+        `${API_URL}/shipments/${id}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(shipment)
+        }
+    );
+
+    return response.json();
+};
+
 
 export const getUsers = async () => {
     const token = localStorage.getItem("token");

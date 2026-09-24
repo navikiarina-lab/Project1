@@ -135,6 +135,7 @@ export const update = async (req, res) => {
         const { id } = req.params;
 
         const {
+            tracking_number,
             sender,
             receiver,
             origin,
@@ -153,6 +154,7 @@ export const update = async (req, res) => {
             query = `
                 UPDATE shipments
                 SET
+                    tracking_number = ?,
                     sender = ?,
                     receiver = ?,
                     origin = ?,
@@ -164,6 +166,7 @@ export const update = async (req, res) => {
             `;
 
             params = [
+                tracking_number,
                 sender,
                 receiver,
                 origin,
@@ -179,6 +182,7 @@ export const update = async (req, res) => {
             query = `
                 UPDATE shipments
                 SET
+                    tracking_number = ?,
                     sender = ?,
                     receiver = ?,
                     origin = ?,
@@ -191,6 +195,7 @@ export const update = async (req, res) => {
             `;
 
             params = [
+                tracking_number,
                 sender,
                 receiver,
                 origin,

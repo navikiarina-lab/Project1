@@ -8,7 +8,8 @@ import ShipmentTable from "../components/ShipmentsTable";
 import {
     getShipments,
     createShipment,
-    deleteShipment
+    deleteShipment,
+    updateShipment
 } from "../api";
 
 function AdminDashboard() {
@@ -17,6 +18,7 @@ function AdminDashboard() {
     const [shipments, setShipments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState("");
+    const [editingShipment, setEditingShipment] = useState(null);
 
     const user = JSON.parse(
         localStorage.getItem("user")
@@ -63,27 +65,22 @@ function AdminDashboard() {
         loadShipments();
     }, [navigate, user?.role]);
 
-    const handleCreateShipment = async (shipment) => {
+    const handleSaveShipment = async (shipment, isEditing) => {
         try {
-            const data = await createShipment(shipment);
+            const data = isEditing
+                ? await updateShipment(shipment.id, shipment)
+                : await createShipment(shipment);
 
-            if (data.id) {
-                setMessage(
-                    "Shipment berhasil ditambahkan"
-                );
-
+            if (data.message?.includes("berhasil")) {
+                setMessage(data.message);
+                setEditingShipment(null);
                 await loadShipments();
             } else {
-                setMessage(
-                    data.message || "Gagal menambahkan shipment"
-                );
+                setMessage(data.message || "Gagal menyimpan shipment");
             }
         } catch (error) {
             console.error(error);
-
-            setMessage(
-                "Tidak dapat terhubung ke server"
-            );
+            setMessage("Tidak dapat terhubung ke server");
         }
     };
 
@@ -208,9 +205,10 @@ function AdminDashboard() {
 
 
                 <ShipmentForm
-                    onShipmentCreated={
-                        handleCreateShipment
-                    }
+                    key={editingShipment?.id || "new-shipment"}
+                    onShipmentCreated={handleSaveShipment}
+                    editingShipment={editingShipment}
+                    onCancelEdit={() => setEditingShipment(null)}
                 />
 
                 {loading ? (
@@ -223,6 +221,7 @@ function AdminDashboard() {
                         onDelete={
                             handleDeleteShipment
                         }
+                        onEdit={setEditingShipment}
                     />
                 )}
 
